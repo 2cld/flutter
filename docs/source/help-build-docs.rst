@@ -46,27 +46,48 @@ Add your ssh key to github via github-addkey_ ::
 
  macci:~ cat$ pbcopy < ~/.ssh/id_rsa.pub
 
-Login to github.  Click your picture, select settings.  Select SSH and GPG keys.  Add key.
+Login to github.  Click your picture, select settings.  Select SSH and GPG keys.  Paste key to add.
+
+===============
+git repo config
+===============
+
+The .git/config file should look like this::
+
+    [core]
+            repositoryformatversion = 0
+            filemode = true
+            bare = false
+            logallrefupdates = true
+            ignorecase = true
+            precomposeunicode = true
+    [remote "origin"]
+            url = https://gituser:gitpass@github.com/2cld/flutter.git
+            fetch = +refs/heads/*:refs/remotes/origin/*
+    [branch "master"]
+            remote = origin
+            merge = refs/heads/master
+
 
 ==========
 ssh keygen
 ==========
 
-Generate a new key via github-genkey_ process::
+Generate a new key via github-genkey_ process for macmini::
 
- macci:~ cat$ ssh-keygen -t rsa -b 4096 -C "christrees@gmail.com"
+ macci:~ cat$ ssh-keygen -t rsa -b 4096 -C "whoever@whatever.com"
 
 Modify ~/.ssh/config to contain::
 
     Host *
-    AddKeysToAgent yes
-    UseKeychain yes
-    IdentityFile ~/.ssh/id_rsa
+     AddKeysToAgent yes
+     UseKeychain yes
+     IdentityFile ~/.ssh/id_rsa
 
 Now add the key to ssh-agent keychain::
 
-    macci:~ cat$ eval "$(ssh-agent -s)"
-    macci:~ cat$ ssh-add -K ~/.ssh/id_rsa
+ macci:~ cat$ eval "$(ssh-agent -s)"
+ macci:~ cat$ ssh-add -K ~/.ssh/id_rsa
 
 =================
 xcode git install
@@ -78,6 +99,9 @@ Assuming Mac OSX 10.13.3 fresh install on macmini named macci.  To install git a
 
 This will activate the xcode install pop-up and configure machine with xcode cli.
 
+Set your git global info::
+
+ macci:flutter cat$ git config --global --edit
 
 ==========
 References
