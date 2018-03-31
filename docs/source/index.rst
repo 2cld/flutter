@@ -8,6 +8,8 @@ Guide
 .. toctree::
    :maxdepth: 2
 
+   flutter-install
+   flutter-dev-smoke
    license
    help
 
