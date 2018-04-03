@@ -20,8 +20,8 @@ Screencasts
 
 .. _tc74: https://youtu.be/iflV0D0d1zQ?t=74
 .. _tc87: https://youtu.be/iflV0D0d1zQ?t=87
-.. _tczz: 
-.. _tczz: 
+.. _tczz: tbd
+
 
 .. raw:: html
 

@@ -81,6 +81,120 @@ Screencasts
 
 #. tc984_ Should get a 'non-pretty' list
 
+#. tc1000_ Make it pretty
+
+#. tc1009_ In main.dart add new widget PlaceWidget::
+
+    class PlaceWidget extends StatelessWidget {
+      final Place _place;
+      PlaceWidget(this._place);
+      @override
+      Widget build(BuildContext context) {
+        // TODO: implement build
+        return new ListTile(
+          title: new Text(_place.name),
+        ); // ListTile
+      }
+    }
+
+#. tc1048_ Override the build widget::
+
+    children: _places.map((place) => new PlaceWidget(place)).toList(),
+
+#. tc1116_ Add subtitle::
+
+    class PlaceWidget extends StatelessWidget {
+      final Place _place;
+      PlaceWidget(this._place);
+      @override
+      Widget build(BuildContext context) {
+        // TODO: implement build
+        return new ListTile(
+          title: new Text(_place.name),
+          subtitle: new Text(_place.address),
+        ); // ListTile
+      }
+    }
+
+#. tc1138_ Add leading::
+
+    class PlaceWidget extends StatelessWidget {
+      final Place _place;
+      PlaceWidget(this._place);
+      @override
+      Widget build(BuildContext context) {
+        // TODO: implement build
+        return new ListTile(
+          leading: new CircleAvatar(
+            child: new Text(_place.rating.toString()),
+            backgroundColor: Colors.green,
+          ), // CircleAvatar
+          title: new Text(_place.name),
+          subtitle: new Text(_place.address),
+        ); // ListTile
+      }
+    }
+
+#. tc1197: Update backgroundColor based on Rating using interpolation::
+
+    class PlaceWidget extends StatelessWidget {
+      final Place _place;
+      PlaceWidget(this._place);
+
+      Color getColor(double rating) {
+        return Color.lerp(Colors.red, Colors.green, rating/5);
+      }
+      
+      @override
+      Widget build(BuildContext context) {
+        // TODO: implement build
+        return new ListTile(
+          leading: new CircleAvatar(
+            child: new Text(_place.rating.toString()),
+            backgroundColor: getColor(_place.rating),
+          ), // CircleAvatar
+          title: new Text(_place.name),
+          subtitle: new Text(_place.address),
+        ); // ListTile
+      }
+    }
+
+#. tc1293_ Put in Swipe Right to Like, Left to Remove using Dismissible::
+
+    class PlaceWidget extends StatelessWidget {
+      final Place _place;
+      PlaceWidget(this._place);
+
+      Color getColor(double rating) {
+        return Color.lerp(Colors.red, Colors.green, rating/5);
+      }
+      
+      @override
+      Widget build(BuildContext context) {
+        // TODO: implement build
+        return new Dismissible(
+          key: new Key(_place.name),
+          background: new Container(color: Colors.green),
+          secondaryBackground: new Container(color: Colors.red),
+          leading: new CircleAvatar(
+            child: new Text(_place.rating.toString()),
+            backgroundColor: getColor(_place.rating),
+          ), // CircleAvatar
+          title: new Text(_place.name),
+          subtitle: new Text(_place.address),
+        ); // ListTile
+      }
+    }
+
+#. tc1415_ Add text to swipe feedback::
+
+    onDismissed: (direction) {
+      direction == DismissDirection.endToStart ? Scaffold.of(context).showSnackBar(
+        new SnackBar(content: new Text('I Like'))) : print('No Like');
+    },
+
+#. tc1609_ Show some of the render debugging performance.
+
 .. _tc74: https://youtu.be/iflV0D0d1zQ?t=74
 .. _tc87: https://youtu.be/iflV0D0d1zQ?t=87
 .. _tc188: https://youtu.be/iflV0D0d1zQ?t=188
@@ -94,6 +208,17 @@ Screencasts
 .. _tc761: https://youtu.be/iflV0D0d1zQ?t=761
 .. _tc800: https://youtu.be/iflV0D0d1zQ?t=800
 .. _tc984: https://youtu.be/iflV0D0d1zQ?t=984
+.. _tc1000: https://youtu.be/iflV0D0d1zQ?t=1000
+.. _tc1009: https://youtu.be/iflV0D0d1zQ?t=1009
+.. _tc1048: https://youtu.be/iflV0D0d1zQ?t=1048
+.. _tc1116: https://youtu.be/iflV0D0d1zQ?t=1116
+.. _tc1138: https://youtu.be/iflV0D0d1zQ?t=1138
+.. _tc1197: https://youtu.be/iflV0D0d1zQ?t=1197
+.. _tc1293: https://youtu.be/iflV0D0d1zQ?t=1293
+.. _tc1415: https://youtu.be/iflV0D0d1zQ?t=1415
+.. _tc1609: https://youtu.be/iflV0D0d1zQ?t=1609
+
+
 
 .. raw:: html
 
